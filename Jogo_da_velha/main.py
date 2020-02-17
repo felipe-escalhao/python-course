@@ -1,5 +1,5 @@
 import os
-
+import random
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -16,8 +16,7 @@ def play():
     board = ['Null', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     display_board(board)
 
-    print("\nLet's play! Player 1 will start!")
-    player = 'Player 1'
+    player = choose_first()
 
     while not ended:
         choose_position(player, players[player], board)
@@ -121,6 +120,19 @@ def play_again():
         response = input('Do you wanna play again? ')
 
     return response.lower() == 'yes'
+
+
+def choose_first():
+
+    flip = random.randint(0, 1)
+
+    if flip == 0:
+        player = 'Player 1'
+    else:
+        player = 'Player 2'
+
+    print(f"\nLet's play! {player} will start!")
+    return player
 
 
 play()
