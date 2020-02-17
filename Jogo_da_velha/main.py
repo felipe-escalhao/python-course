@@ -1,25 +1,25 @@
 import os
 import random
 
+
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def play():
     ended = False
-    players = choose_mark()
+    player = choose_first()
+    player_marks = choose_mark(player)
 
-    print(f'Player 1: {players["Player 1"]}')
-    print(f'Player 2: {players["Player 2"]}\n')
+    print(f'Player 1: {player_marks["Player 1"]}')
+    print(f'Player 2: {player_marks["Player 2"]}\n')
 
     print('These are the number positions!')
     board = ['Null', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
     display_board(board)
 
-    player = choose_first()
-
     while not ended:
-        choose_position(player, players[player], board)
+        choose_position(player, player_marks[player], board)
 
         if check_status(board):
             print(f"\nThe winner is {player}!")
@@ -40,20 +40,20 @@ def play():
         print('Thanks for playing!')
 
 
-def choose_mark():
+def choose_mark(player):
     mark = ''
 
     while mark.upper() != 'X' and mark.upper() != 'O':
         mark = input('Choose X or O ')
 
     if mark.upper() == 'X':
-        player1, player2 = ('X', 'O')
+        mark1, mark2 = ('X', 'O')
     else:
-        player1, player2 = ('O', 'X')
+        mark1, mark2 = ('O', 'X')
 
     players = {
-        'Player 1': player1,
-        'Player 2': player2
+        'Player 1': mark1 if player == 'Player 1' else mark2,
+        'Player 2': mark1 if player == 'Player 2' else mark2
     }
 
     return players
