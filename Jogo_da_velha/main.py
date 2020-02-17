@@ -13,10 +13,8 @@ def play():
 
     print(f'Player 1: {player_marks["Player 1"]}')
     print(f'Player 2: {player_marks["Player 2"]}\n')
-
-    print('These are the number positions!')
+    
     board = ['Null', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    display_board(board)
 
     while not ended:
         choose_position(player, player_marks[player], board)
