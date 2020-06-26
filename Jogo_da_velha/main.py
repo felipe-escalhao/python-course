@@ -13,7 +13,7 @@ def play():
 
     print(f'Player 1: {player_marks["Player 1"]}')
     print(f'Player 2: {player_marks["Player 2"]}\n')
-    
+
     board = ['Null', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
 
     while not ended:
