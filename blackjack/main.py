@@ -22,23 +22,27 @@ def main():
 def play(deck, player):
 
     dealer = Dealer()
-    bet = 0
+    bet = -1
 
-    while bet <= 0:
+    while bet < 0:
         try:
             bet = int(input('How many chips do you want to bet?'))
             if player.bet(bet):
                 print("You don't have enough chips to do this bet. Choose a lower amount.")
-                bet = 0
+                bet = -1
         except ValueError:
             print('Please, choose a number greater than 0')
             continue
+
+    if bet == 0:
+        print('Thanks for playing!')
+        return
 
     dealer.deal(deck, dealer, 2)
     dealer.deal(deck, player, 2)
 
     dealer.show_cards()
-    player.show_cards()
+    player.show_cards()    
 
 
 if __name__ == '__main__':
