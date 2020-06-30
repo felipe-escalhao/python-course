@@ -16,3 +16,6 @@ class Chips:
 
     def win(self):
         self.chips = self.chips + (self.amount * 2)
+
+    def add_chips(self, amount):
+        self.chips = self.chips + amount

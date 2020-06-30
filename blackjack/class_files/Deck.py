@@ -13,6 +13,7 @@ def assemble_deck():
         for card in _cards:
             deck.append(Card(rank, card))
 
+    random.shuffle(deck)
     return deck
 
 

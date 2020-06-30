@@ -2,8 +2,9 @@ from python_course.blackjack.class_files.abstract.Player import Player
 
 
 class Dealer(Player):
-    def hit(self, deck):
-        self.hand.add(deck.draw())
+    def hit(self, cards):
+        for card in cards:
+            self.hand.add(card)
 
     def show_cards(self):
         cards = ''
@@ -15,6 +16,5 @@ class Dealer(Player):
 
         return f'The dealer has the following cards:\n{cards[1:-1]}'
 
-    def deal(self, deck, player, num_cards):
-        card_draw = deck.draw(num_cards)
-        player.hand.add(card_draw)
+    def deal(self, num_cards=1):
+        return self.deck.draw(num_cards)
