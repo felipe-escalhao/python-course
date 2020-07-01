@@ -40,33 +40,26 @@ def main():
 def play(player):
 
     dealer = Dealer(deck=Deck())
-    bet = -1
 
-    while bet < 0:
+    while player.bet < 0:
         try:
-            bet = int(input('How many chips do you want to bet?'))
-            if player.bet(bet):
+            player.bet = int(input('How many chips do you want to bet?'))
+            if player.do_bet():
                 print("You don't have enough chips to do this bet. Choose a lower amount.")
-                bet = -1
+                player.bet = -1
         except ValueError:
             print('Please, choose a number greater than 0')
             continue
 
-    if bet == 0:
-        print('Thanks for playing!')
+    first_deal(dealer, player)
+    if busted(player):
         return
-
-    dealer.hit(dealer.deal(2))
-    player.hit(dealer.deal(2))
-
-    dealer.show_cards()
-    player.show_cards()
 
     player_hit(dealer, player)
-
-    if player.hand.check_hand_value() > 21:
-        print(f'Player busted and lost {bet} chips')
+    if busted(player):
         return
+
+    print('OK')
 
 
 def player_hit(dealer, player):
@@ -75,10 +68,21 @@ def player_hit(dealer, player):
         if hit_answer == 'yes':
             card = dealer.deal()
             player.hit(card)
+            player.show_cards()
+            if player.busted():
+                break
         elif hit_answer == 'no':
             break
         else:
             print("Please, choose between yes or no")
+
+
+def dealer_hit(dealer):
+    while True:
+        card = dealer.deal()
+        dealer.hit(card)
+        dealer.show_cards(True)
+        # CONTINUA AQUI
 
 
 def buy_chips(player):
@@ -92,6 +96,7 @@ def buy_chips(player):
 
                     if player_chips > 0:
                         player.add_chips(player_chips)
+                        break
                     else:
                         raise ValueError
                 except ValueError:
@@ -102,6 +107,19 @@ def buy_chips(player):
             break
         else:
             print('Please, choose between yes or no')
+
+
+def first_deal(dealer, player):
+    dealer.hit(dealer.deal(2))
+    player.hit(dealer.deal(2))
+
+    dealer.show_cards()
+    player.show_cards()
+
+
+def busted(player):
+    if player.busted():
+        print(f'Player busted and lost {player.bet} chips')
 
 
 if __name__ == '__main__':

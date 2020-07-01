@@ -21,18 +21,23 @@ class Customer(Player):
                         print('Please, type either 1 or 11')
                         continue
 
-    def show_cards(self):
+    def show_cards(self, show_all=False):
         cards = ''
+        points = 0
         for card in self.hand.cards:
             cards = cards + f' {card},'
+            points = points + self.hand.rank_values[card.rank]
 
-        return f'The player has the following cards:\n{cards[1:-1]}'
+        print(f'The player has the following cards:\n{cards[1:-1]} (Points: {points})')
 
-    def bet(self, amount=0):
-        return self.chips.bet(amount)
+    def do_bet(self):
+        return self.chips.bet(self.bet)
 
     def win(self):
         self.chips.win()
 
     def add_chips(self, amount):
         self.chips.add_chips(amount)
+
+    def busted(self):
+        return self.hand.check_hand_value() > 21

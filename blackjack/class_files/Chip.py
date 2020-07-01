@@ -9,9 +9,9 @@ class Chips:
     def bet(self, amount):
         self.amount = amount
         if amount < self.chips:
+            self.chips = self.chips - self.amount
             return False
         else:
-            self.chips = self.chips - self.amount
             return True
 
     def win(self):
