@@ -16,3 +16,6 @@ class Hand:
 
     def ace_value(self, ace_value):
         self.rank_values.update({'Ace': ace_value})
+
+    def clear(self):
+        self.cards = []

@@ -9,7 +9,7 @@ class Customer(Player):
             if card.rank == 'Ace' and not self.ace_value:
                 while True:
                     try:
-                        ace_value = int(input('Aces can be 1 or 11. Which one do you choose?'))
+                        ace_value = int(input('Aces can be 1 or 11. Which one do you choose? Answer: '))
 
                         if ace_value == 1 or ace_value == 11:
                             self.hand.ace_value(ace_value)
@@ -26,7 +26,7 @@ class Customer(Player):
         points = 0
         for card in self.hand.cards:
             cards = cards + f' {card},'
-            points = points + self.hand.rank_values[card.rank]
+            points = points + self.hand.rank_values[card.card]
 
         print(f'The player has the following cards:\n{cards[1:-1]} (Points: {points})')
 
@@ -41,3 +41,7 @@ class Customer(Player):
 
     def busted(self):
         return self.hand.check_hand_value() > 21
+
+    def clear(self):
+        self.bet = -1
+        self.hand.clear()

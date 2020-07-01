@@ -8,7 +8,7 @@ class Chips:
 
     def bet(self, amount):
         self.amount = amount
-        if amount < self.chips:
+        if amount <= self.chips:
             self.chips = self.chips - self.amount
             return False
         else:
