@@ -12,7 +12,7 @@ class Customer(Player):
                         ace_value = int(input('Aces can be 1 or 11. Which one do you choose? Answer: '))
 
                         if ace_value == 1 or ace_value == 11:
-                            self.hand.ace_value(ace_value)
+                            card.ace_value(ace_value)
                             self.ace_value = True
                             break
                         else:
@@ -26,7 +26,7 @@ class Customer(Player):
         points = 0
         for card in self.hand.cards:
             cards = cards + f' {card},'
-            points = points + self.hand.rank_values[card.card]
+            points = points + card.rank_value
 
         print(f'The player has the following cards:\n{cards[1:-1]} (Points: {points})')
 

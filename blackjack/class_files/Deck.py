@@ -3,14 +3,14 @@
 import random
 from python_course.blackjack.class_files.Card import Card
 
-_ranks = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
-_cards = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
+_suits = ('Hearts', 'Diamonds', 'Spades', 'Clubs')
+_ranks = ('Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace')
 
 
 def assemble_deck():
     deck = []
-    for rank in _ranks:
-        for card in _cards:
+    for rank in _suits:
+        for card in _ranks:
             deck.append(Card(rank, card))
 
     random.shuffle(deck)

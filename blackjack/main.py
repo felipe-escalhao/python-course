@@ -109,7 +109,7 @@ def buy_chips(player):
         if player_answer == 'yes':
             while True:
                 try:
-                    player_chips = int(input('How many chips do you want to buy?'))
+                    player_chips = int(input('How many chips do you want to buy? Answer: '))
 
                     if player_chips > 0:
                         player.add_chips(player_chips)

@@ -14,11 +14,11 @@ class Dealer(Player):
                 cards = f' X-HIDDEN-X,'
                 if show_all:
                     cards = f' {card},'
-                    points = points + self.hand.rank_values[card.card]
+                    points = points + card.rank_value
 
             else:
                 cards = cards + f' {card},'
-                points = points + self.hand.rank_values[card.card]
+                points = points + card.rank_value
 
         print(f'The dealer has the following cards:\n{cards[1:-1]} (Points: {points})')
 
